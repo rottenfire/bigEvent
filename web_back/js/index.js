@@ -7,6 +7,8 @@ $('#logoutA').click(function() {
   })
 });
 
+
+// 获取用户信息，更改用户名及头像
 $.get('http://localhost:8000/admin/getuser',function (res) {
   console.log(res);
   $('#nickname').text(res.data.nickname);
