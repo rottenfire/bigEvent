@@ -1,4 +1,12 @@
-$('#subBtn').click(function () {
+$('#subBtn').click(signIn);
+$(document).keydown(function (e) {
+  if(e.keyCode == 13) {
+    signIn();
+  }
+});
+
+
+function signIn () {
   var inpTxt = $('#inpTxt').val();
   var inpPwd = $('#inpPwd').val();
   if(inpTxt == '' || inpPwd == '') {
@@ -21,4 +29,5 @@ $('#subBtn').click(function () {
       }
     }
   })
-})
+}
+
