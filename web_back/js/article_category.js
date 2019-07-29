@@ -12,26 +12,14 @@ function refreshCategory() {
 
 // 删除按钮绑定事件
 function deleteTr(id) {
-  $('#delBtn').off('click', deleteCategory);
-  // console.log(id);
-  $('#deleteCho').modal('show');
-  $('#delBtn').on('click', deleteCategory);
-  // $('#deleteCho').modal('hide');
-  $('#canBtn').click(function () {});
-}
-
-function deleteCategory() {
-  // $.post('http://localhost:8000/admin/category_delete', {
-  //   id: id
-  // }, function (res) {
-  //   console.log('res:', res);
-  //   if (res.code === 200) {
-  //     console.log('删除成功');
-  //     // alert(res.msg);
-  //   }
-  //   refreshCategory();
-  // })
-  console.log('123');
-  $('#deleteCho').modal('hide');
-  
+  $.post('http://localhost:8000/admin/category_delete', {
+    id: id
+  }, function (res) {
+    console.log('res:', res);
+    if (res.code === 200) {
+      console.log('删除成功');
+      alert(res.msg);
+      refreshCategory();
+    }
+  })
 }
