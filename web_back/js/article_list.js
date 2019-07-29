@@ -1,19 +1,21 @@
 // 当前删除的条目ID
 var currentDelId = '';
 var currentPage = 1;
+var currentType = '';
+var currentState = '';
 
 refreshTr();
+categorySel();
 
 // 文章搜索刷新
 function refreshTr() {
   $.getJSON('http://localhost:8000/admin/search', {
-    page: currentPage
+    page: currentPage,
+    type: currentType
   }, function (res) {
-    console.log(res.data);
+    // console.log(res.data);
     var htmlString = template('articleTr', res);
-    // console.log(htmlString);
     $('#artTbody').html(htmlString);
-
     $('.pagination').twbsPagination({
       currentPage: 1, // 初始页
       totalPages: res.totalPage, // 总页数，可以通过翻页，或者最后一页
@@ -30,6 +32,14 @@ function refreshTr() {
       }
     });
   })
+}
+
+// 设置文章类型下拉框中的内容
+function categorySel() {
+  $.getJSON('http://localhost:8000/admin/category_search',function (res) {
+    var categorySel = template('categorySel',res);
+    $('#selCategory').html(categorySel);
+  });
 }
 
 // 给删除按钮绑定事件
@@ -49,3 +59,10 @@ $('#modal_del').on('click', '#delBtn', function () {
     refreshTr();
   });
 })
+
+// 筛选按钮事件绑定
+$('#btnSearch').on('click',function() {
+  currentType = $('#selCategory').val();
+  currentState = $('#selStatus').val();
+  refreshTr();
+});

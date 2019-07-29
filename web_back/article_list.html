@@ -26,16 +26,16 @@
                 <div class="col-xs-6">
                     <form class="form-inline">
                         <select id="selCategory" name="" class="form-control input-sm">
-                            <option>所有分类</option>
+                            <!-- <option>所有分类</option>
                             <option>未分类</option>
                             <option>奇趣事</option>
                             <option>会生活</option>
-                            <option>爱旅行</option>
+                            <option>爱旅行</option> -->
                         </select>
                         <select id="selStatus" name="" class="form-control input-sm">
-                            <option>所有状态</option>
-                            <option value="drafted">草稿</option>
-                            <option value="published">已发布</option>
+                            <option value="">所有状态</option>
+                            <option value="草稿">草稿</option>
+                            <option value="已发布">已发布</option>
                         </select>
                         <button id="btnSearch" class="btn btn-default btn-sm">筛选</button>
                     </form>
@@ -91,23 +91,23 @@
 
         </div>
         <div id="modal_del" class="modal fade" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">系统提示</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>是否要删除？</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button id="canBtn" type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                            <button id="delBtn" type="button" class="btn btn-danger">删除</button>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">系统提示</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>是否要删除？</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="canBtn" type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button id="delBtn" type="button" class="btn btn-danger">删除</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
     </div>
 
     <script>
@@ -116,6 +116,8 @@
             window.parent.setMenu(1, 1);
         })
     </script>
+
+    <!-- 文章列表模板 -->
     <script id="articleTr" type="text/html">
         {{each data item}}
         <tr>
@@ -131,7 +133,13 @@
         </tr>
         {{/each}}
     </script>
-    <script ></script>
+    <!-- 文章类别下拉框模板 -->
+    <script id="categorySel" type="text/html">
+        <option value="">所有分类</option>
+        {{each data item}}
+        <option value="{{item.id}}">{{item.name}}</option>
+        {{/each}}
+    </script>
     <script src="./js/article_list.js"></script>
 </body>
 
