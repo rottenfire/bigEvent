@@ -84,7 +84,6 @@ $('#modal_del').on('click', '#delBtn', function () {
 $('#btnSearch').on('click',function() {
   currentType = $('#selCategory').val();
   currentState = $('#selStatus').val();
-  console.log(currentType);
-  console.log(currentState);
+  firstPagination = true;
   refreshTr();
 });
