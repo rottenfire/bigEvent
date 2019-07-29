@@ -1,15 +1,34 @@
 // 当前删除的条目ID
 var currentDelId = '';
+var currentPage = 1;
 
 refreshTr();
 
 // 文章搜索刷新
 function refreshTr() {
-  $.getJSON('http://localhost:8000/admin/search', function (res) {
+  $.getJSON('http://localhost:8000/admin/search', {
+    page: currentPage
+  }, function (res) {
     console.log(res.data);
     var htmlString = template('articleTr', res);
     // console.log(htmlString);
     $('#artTbody').html(htmlString);
+
+    $('.pagination').twbsPagination({
+      currentPage: 1, // 初始页
+      totalPages: res.totalPage, // 总页数，可以通过翻页，或者最后一页
+      startPage: 1,
+      visiblePages: 6, // 可见页面
+      first: "首页",
+      last: "尾页",
+      prev: '<',
+      next: '>',
+      onPageClick: function (event, page) {
+        console.log(event, page)
+        currentPage = page;
+        refreshTr();
+      }
+    });
   })
 }
 
