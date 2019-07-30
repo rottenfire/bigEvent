@@ -30,6 +30,7 @@ function toSubmit(state) {
     contentType: false,
     success: function (data) {
       console.log(data);
+      parent.location.href = 'index.html';
     }
   })
 }

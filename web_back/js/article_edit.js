@@ -41,6 +41,7 @@ function doEdit() {
     contentType: false,
     success: function(res) {
       console.log(res);
+      parent.location.href = 'index.html';
     }
   })
 }
