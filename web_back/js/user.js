@@ -12,7 +12,6 @@ function initUserInfo() {
       $('#inputEmail').val(res.data.email);
       $('#inputPwd').val(res.data.password);
       $('#imgPic').attr('src', res.data.user_pic);
-
       // pwd = res.data.password;
     }
   })
@@ -21,10 +20,14 @@ function initUserInfo() {
 // 设置上传头像预览功能
 $('#inputUserPic').on('change', function () {
   var file = this.files[0];
-  var picUrl = URL.createObjectURL(file);
-  // console.log(picUrl);
-  $('#imgPic').attr('src', picUrl);
-  // console.log($('#imgPic').attr('src'));
+  if(file) {
+    var picUrl = URL.createObjectURL(file);
+    console.log(picUrl);
+    $('#imgPic').attr('src', picUrl);
+    // console.log($('#imgPic').attr('src'));
+  } else {
+    $('#imgPic').attr('src', '');
+  }
 });
 
 // 绑定修改按钮事件

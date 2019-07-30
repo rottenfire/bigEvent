@@ -15,6 +15,8 @@
     <script src="js/jedate/js/jedate.js"></script>
     <script src="js/tinymce/js/tinymce/tinymce.min.js"></script>
     <script src="js/tinymce/js/tinymce_setup.js"></script>
+    <script src="./js/template-web.js"></script>
+    <script src="./js/axios-0.19.0-min.js"></script>
 </head>
 
 <body>
@@ -23,38 +25,39 @@
             文章编辑
         </div>
         <div class="container-fluid common_con">
-            <form class="form-horizontal article_form">
+            <form id="artDetailForm" class="form-horizontal article_form">
+                <input id="artId" type="hidden" name="id" value="">
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">文章标题：</label>
+                    <label for="title" class="col-sm-2 control-label">文章标题：</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputEmail3" value="文章标题文字">
+                        <input type="text" name="title" class="form-control" id="inputTitle" value="文章标题文字">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">文章封面：</label>
+                    <label for="cover" class="col-sm-2 control-label">文章封面：</label>
                     <div class="col-sm-10">
-                        <img src="images/pic06.jpg" class="article_cover">
-                        <input type="file" id="exampleInputFile">
+                        <img src="images/pic06.jpg" id="artPic" class="article_cover">
+                        <input type="file" name="cover" id="exampleInputFile">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">文章类别：</label>
+                    <label for="type" class="col-sm-2 control-label">文章类别：</label>
                     <div class="col-sm-4">
-                        <select class="form-control">
-                            <option>类别一</option>
+                        <select id="artTypeSel" name="type" class="form-control">
+                            <!-- <option>类别一</option>
                             <option>类别二</option>
                             <option>类别三</option>
                             <option selected>类别四</option>
-                            <option>类别五</option>
+                            <option>类别五</option> -->
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">发布时间：</label>
+                    <label for="date" class="col-sm-2 control-label">发布时间：</label>
                     <div class="col-sm-4">
 
                         <div class="input-group">
-                            <input type="text" class="form-control" value="2019-05-17" id="dateinput">
+                            <input type="text" name="date" class="form-control" value="" id="dateinput">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="button"
                                     onclick="jeDate('#dateinput',{trigger:false,format: 'YYYY-MM-DD'})"><i
@@ -64,19 +67,28 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">文章内容：</label>
+                    <label for="content" class="col-sm-2 control-label">文章内容：</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="rich_content" name="content" placeholder="文章内容" value="文章内容">
+                        <input type="text" class="form-control" id="rich_content" placeholder="文章内容"
+                            value="文章内容">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-success">修改</button>
+                        <button type="button" id="editBtn" class="btn btn-success">修改</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+
+    <!-- 文章类别模板 -->
+    <script id="artTypeModel" type="text/html">
+        {{each data item}}
+        <option value="{{item.id}}">{{item.name}}</option>
+        {{/each}}
+    </script>
+    <script src="./js/article_edit.js"></script>
 
 </body>
 

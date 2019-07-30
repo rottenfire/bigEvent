@@ -10,12 +10,6 @@ function getCategory() {
   });
 }
 
-// 选择图片文件后的预览功能
-function previewCover(file) {
-  var urlS = URL.createObjectURL(file)
-  $('#artPic').attr('src', urlS);
-}
-
 // 发布文章接口请求
 function toSubmit(state) {
   if (state === '已发布') {
@@ -40,6 +34,12 @@ function toSubmit(state) {
   })
 }
 
+// 选择图片文件后的预览功能
+function previewCover(file) {
+  var urlS = URL.createObjectURL(file)
+  $('#artPic').attr('src', urlS);
+}
+
 // 选择文件绑定change事件
 $('#exampleInputFile').on('change', function () {
   var file = this.files[0];
@@ -60,5 +60,4 @@ $('#submitBtn').on('click', function () {
 $('#draftBtn').on('click', function () {
   console.log('draft');
   toSubmit('草稿');
-
 });
